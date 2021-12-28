@@ -1,0 +1,82 @@
+[debug] [2018-02-09T23:55:43.027Z] ----------------------------------------------------------------------
+[debug] [2018-02-09T23:55:43.030Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-02-09T23:55:43.030Z] CLI Version:   3.17.4
+[debug] [2018-02-09T23:55:43.030Z] Platform:      darwin
+[debug] [2018-02-09T23:55:43.030Z] Node Version:  v8.9.4
+[debug] [2018-02-09T23:55:43.031Z] Time:          Sat Feb 10 2018 08:55:43 GMT+0900 (KST)
+[debug] [2018-02-09T23:55:43.031Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-09T23:55:43.045Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-09T23:55:43.046Z] > authorizing via signed-in user
+[debug] [2018-02-09T23:55:43.047Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-02-09T23:55:43.047Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/S572JU3IuHuE7XLN7lIfJsgeyHMSh3izIi1njmy4yAeGAuwowRsTibKNy6vUFQa6',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Feb 10 2018 08:55:43 GMT+0900 (KST)
+[debug] [2018-02-09T23:55:43.324Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-09T23:55:43.335Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/testmemo-8978f  
+  
+ Sat Feb 10 2018 08:55:43 GMT+0900 (KST)
+[debug] [2018-02-09T23:55:44.654Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-09T23:55:44.655Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/testmemo-8978f/tokens  
+  
+ Sat Feb 10 2018 08:55:44 GMT+0900 (KST)
+[debug] [2018-02-09T23:55:45.652Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/macbookpro/Desktop/testMemo'...
+[info] 
+[debug] [2018-02-09T23:55:45.654Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/testmemo-8978f  
+  
+ Sat Feb 10 2018 08:55:45 GMT+0900 (KST)
+[debug] [2018-02-09T23:55:46.702Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-09T23:55:46.702Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/118296075968/clients/_:getWebAppConfig  
+  
+ Sat Feb 10 2018 08:55:46 GMT+0900 (KST)
+[debug] [2018-02-09T23:55:48.953Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[debug] [2018-02-10T23:29:35.186Z] ----------------------------------------------------------------------
+[debug] [2018-02-10T23:29:35.188Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-02-10T23:29:35.188Z] CLI Version:   3.17.4
+[debug] [2018-02-10T23:29:35.188Z] Platform:      darwin
+[debug] [2018-02-10T23:29:35.188Z] Node Version:  v8.9.4
+[debug] [2018-02-10T23:29:35.188Z] Time:          Sun Feb 11 2018 08:29:35 GMT+0900 (KST)
+[debug] [2018-02-10T23:29:35.188Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-10T23:29:35.209Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-10T23:29:35.209Z] > authorizing via signed-in user
+[debug] [2018-02-10T23:29:35.211Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-02-10T23:29:35.212Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/S572JU3IuHuE7XLN7lIfJsgeyHMSh3izIi1njmy4yAeGAuwowRsTibKNy6vUFQa6',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sun Feb 11 2018 08:29:35 GMT+0900 (KST)
+[debug] [2018-02-10T23:29:35.492Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-10T23:29:35.506Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/testmemo-8978f  
+  
+ Sun Feb 11 2018 08:29:35 GMT+0900 (KST)
+[debug] [2018-02-10T23:29:36.837Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-10T23:29:36.837Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/testmemo-8978f/tokens  
+  
+ Sun Feb 11 2018 08:29:36 GMT+0900 (KST)
+[debug] [2018-02-10T23:29:37.839Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/macbookpro/Desktop/testMemo'...
+[info] 
+[debug] [2018-02-10T23:29:37.842Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/testmemo-8978f  
+  
+ Sun Feb 11 2018 08:29:37 GMT+0900 (KST)
+[debug] [2018-02-10T23:29:38.866Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-10T23:29:38.867Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/118296075968/clients/_:getWebAppConfig  
+  
+ Sun Feb 11 2018 08:29:38 GMT+0900 (KST)
+[debug] [2018-02-10T23:29:41.216Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+

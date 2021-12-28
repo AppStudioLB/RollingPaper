@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <title>땡스피드</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- 네비게이션 바 시작 -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">땡쓰피드게시판</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="#">마이페이지</a></li>
+        <li><a id="joinmenu" href="/join.html">가입</a></li>
+        <li><a id="loginmenu" href="/login.html">로그인</a></li>
+      </ul>
+    </div>
+  </nav>
+<!-- 네비게이션 바 끝 -->
+
+
+<!-- 점보트론 시작 -->
+<div class="container">
+  <div class="jumbotron">
+    <h1>당신의 생각을 말해줘요.</h1> 
+    <p>땡스피드는 오늘 하루 있었던 즐거운일, 감사한일, 행복한일을 적으며 하루를 마무리하는 게시판입니다.</p> 
+  </div>
+</div>
+<!-- 점보트론 끝 -->
+
+<!-- 쓰기 텍스트 필드 시작-->
+<div class="container">
+<div class="form-group">
+  <label for="comment">오늘의 감사:</label>
+  <textarea class="form-control" rows="5" id="comment"></textarea>
+  <br>
+    <!-- 쓰기 버튼 가운데 정렬 -->
+   <div class="text-center"> 
+      <button type="button" class="btn btn-success write" id="write" name="write">쓰기</button>
+  </div>
+</div>
+</div>
+<!-- 쓰기 텍스트 필드 끝-->
+
+
+<!-- 감사리스트 출력하기-->
+<div class="container">
+    <hr>
+  <h3>감사리스트</h3>
+    <br>
+     <!-- 감사 리스트 붙일 곳 -->
+    <div class="thanksList"></div>
+   
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--스크립트 부분 -->
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+<script>
+//냘짜 함수
+var d = new Date();
+var year = d.getFullYear().toString();
+var month = (d.getMonth() + 1).toString();
+var day = d.getDate().toString();
+var hours = d.getHours().toString();
+var min = d.getMinutes().toString();
+var sec = d.getSeconds().toString();
+var currentTime = year + month + day+ hours + min + sec;
+
+  var loginUserKey;
+  var emailAuth;
+  var firebaseDatabase;
+
+  var name;
+  var userInfo;
+  var comment;
+
+  var thankKey;
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBbqZNDEZ5IMxTzprEkCN-qDCqNRaKxVFc",
+  authDomain: "rollingpaper-8281a.firebaseapp.com",
+  projectId: "rollingpaper-8281a",
+  storageBucket: "rollingpaper-8281a.appspot.com",
+  messagingSenderId: "830774153646",
+  appId: "1:830774153646:web:76288e56e7854a1ea8383f",
+  measurementId: "G-R5W94G6N5C"
+  };
+  firebase.initializeApp(config);
+
+
+emailAuth = firebase.auth();
+firebaseDatabase=firebase.database();
+//로그인 했는지  체크 함수
+userSessionCheck();
+
+
+$(document).ready(function(){
+
+//감사리스트 호출
+ thanksList();
+
+  //메인화면 감사일기 쓰기버튼 눌렀을 때
+  $(document).on('click','.write',function(){
+
+   var seseionCheck = document.getElementById("loginmenu").textContent;
+
+    //내가 쓴글 가져오기
+    comment = $('#comment').val();
+    if(seseionCheck == "로그아웃"){
+        //저장하기
+        saveThanks();
+    }else{
+      alert("로그인이 필요한 서비스 입니다.")
+    }
+  });
+});
+
+//유저가 로그인 했는지 안했는지 확인해주는 함수
+function userSessionCheck(){
+
+    //로그인이 되어있으면 - 유저가 있으면 user를 인자값으로 넘겨준다.
+emailAuth.onAuthStateChanged(function(user) {
+  if (user) {
+   //조회 - 데이터 베이스에 저장된 닉네임을 현재 접속되어 있는 user의 pk key 값을 이용해서 가져오기
+   firebaseDatabase.ref("users/"+user.uid).once('value').then(function(snapshot){
+            //유저라는 부모 키 에
+            //alert("로그인 되어 있군요 : " + user.uid);
+            //alert(snapshot.val().name + "님 환영합니다");
+      document.getElementById("loginmenu").textContent="로그아웃";
+      document.getElementById("loginmenu").href="/logout.html"; 
+      document.getElementById("joinmenu").textContent="반가워요! "+snapshot.val().name+ " 님";
+      name = snapshot.val().name;
+      loginUserKey = snapshot.key;
+      alert("userSessionCheck부분: 현재 로그인한 유저의 key =  "+ loginUserKey);
+      userInfo = snapshot.val(); //snapshot.val()에 user 테이블에 있는 해당 개체 정보가 넘어온다. userInfo에 대입!
+      //alert(userInfo); //object 객체
+      //alert(userInfo.name);
+      //alert(userInfo.userid);  //uid는 db에서 user 테이블의 각 개체들의 pk 인데, 이 값은 인증에서 생성된 아이디의 pk 값과 같다.
+      return true
+    }); 
+
+  }else{
+    alert("로그인 해주세요.")
+    return false
+  }
+})
+}
+
+
+//쓰기 버튼 눌렀을 때 호출 되는 함수
+function saveThanks(){
+
+
+//thanks 라는 테이블을 만들고 하위 데이터에 유저 아이디를 넣어준다. 그곳에 push로 가상의 키를 넣고, 객체를 넣어준다.!!!!
+  var ths = firebaseDatabase.ref("thanks");
+  //thankKey = ths.push().key;
+  var thank = ths.push(); // 해당 객체의 key 값이 자동으로 생성된다.
+  //로그인한 유저의 pk값,이름,내용,시간 데이터
+  var obj = {
+        userkey:loginUserKey,
+        name:name,
+        comment: comment,
+        createtime : currentTime
+    };
+  thank.set(obj);
+
+
+    //지정된 키 밑에 저장하려면 set, 랜덤인 키에 저장을 하려면 push.
+    //ref.push(obj); // 고유한 자식 키가 하나 생셩이 되면서 json 삽입
+    alert("또 하나의 감사가 생겼습니다.");
+
+    //메인 페이지로 이동시키고 세션 저장시키기
+    //window.location.href = "/index.html"
+}
+
+
+
+function thanksList(){
+  alert("땡스 리스트 호출")
+
+  var thanksRef = firebaseDatabase.ref('thanks');
+//조회
+  thanksRef.on('child_added', on_thanks_list)
+}
+
+//땡스리스트 thanks 테이블의 thanks 키 들을 연속적으로 가져온다.
+function on_thanks_list(data){
+
+    var key = data.key;
+
+    var Data = data.val();
+    var comment = Data.comment;
+    var createtime = Data.createtime;
+    var name = Data.name;
+    var userkey = Data.userkey;
+
+  //alert(comment +"/"+ createtime + "/"+name +"/"+userkey);
+
+
+    //감사리스트 동적으로 붙이기
+    var html =    
+    "<div class=\"media\" id='"+userkey+"' onclick=\"show_user_page(this.id)\">" +
+    "<div class=\"media-body\">" +
+    "<h4 class=\"media-heading\">" + name +
+    " <span STYLE=\"color: green; font-size: 5pt\">" + createtime + "</span></h4>" + 
+    "<p>" + comment + "</p></div></div>" +
+    "<hr>";
+      
+    $(".thanksList").append(html);
+
+}
+
+function show_user_page(clickUserId){
+  alert(clickUserId + "님 의 페이지로 갑니당 슝")
+}
+
+</script>
+
+</body>
+</html>

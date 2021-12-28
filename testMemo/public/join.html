@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <title>땡스피드 - 가입</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- 네비게이션 바 시작 -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">땡쓰피드게시판</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">마이페이지</a></li>
+        <li class="active"><a href="/join.html">가입</a></li>
+        <li><a href="/login.html">로그인</a></li>
+      </ul>
+    </div>
+  </nav>
+<!-- 네비게이션 바 끝 -->
+
+
+<!-- 가입 폼 시작 -->
+<div class="container">
+    <h1>환영합니다!</h1>
+
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" class="form-control" id="email">
+    </div>
+
+    <div class="form-group">
+            <label for="name">NicName:</label>
+            <input type="text" class="form-control" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd">
+    </div>
+
+    <button type="button" class="btn btn-default join">가입</button>
+
+</div>
+<!-- 가입 폼 끝 -->
+
+
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+<script>
+
+//냘짜 함수
+var d = new Date();
+var year = d.getFullYear().toString();
+var month = (d.getMonth() + 1).toString();
+var day = d.getDate().toString();
+var hours = d.getHours().toString();
+var min = d.getMinutes().toString();
+var sec = d.getSeconds().toString();
+var currentTime = year + month + day+ hours + min + sec;
+
+var emailAuth;
+var firebaseDatabase;
+var userInfo;
+var name;
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBbqZNDEZ5IMxTzprEkCN-qDCqNRaKxVFc",
+  authDomain: "rollingpaper-8281a.firebaseapp.com",
+  projectId: "rollingpaper-8281a",
+  storageBucket: "rollingpaper-8281a.appspot.com",
+  messagingSenderId: "830774153646",
+  appId: "1:830774153646:web:76288e56e7854a1ea8383f",
+  measurementId: "G-R5W94G6N5C"
+  };
+  
+firebase.initializeApp(config);
+//이메일 인증 객체
+emailAuth = firebase.auth();
+firebaseDatabase=firebase.database();
+// You can retrieve services via the defaultApp variable...
+//var defaultStorage = defaultApp.storage();
+//var defaultDatabase = defaultApp.database();
+
+
+$(document).ready(function(){
+  
+  //가입버튼 눌렀을 때
+  $(document).on('click','.join',function(){
+    var email = $('#email').val();
+    var password = $('#pwd').val();
+    name = $('#name').val();
+
+//이메일로 가입 버튼 눌렀을 때 작동되는 함수
+emailAuth.createUserWithEmailAndPassword(email, password).then(function(user) {
+    //var user = emailAuth.currentUser;
+    userInfo = user;
+    console.log("userInfo/"+userInfo); //오브젝트 타입
+    console.log("userInfo.currentUser/"+userInfo.currentUser); //안됨
+    console.log("userInfo.uid/"+userInfo.uid); //vPArtCHqPpOeIOpidEfug0Kgq3v1
+    
+    //성공했을 때 작동되는 함수
+    logUser(); 
+
+}, function(error) {
+    //에러가 발생했을 때 
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    alert(errorMessage);
+   
+});
+
+//가입 성공했을 때 호출 되는 함수
+function logUser(){
+    var ref = firebaseDatabase.ref("users/"+userInfo.uid); //유저라는 부모 키 에
+    var obj = {
+        name: name,
+        createtime : currentTime
+    };
+
+    ref.set(obj); // 고유한 자식 키가 하나 생셩이 되면서 json 삽입
+    alert("가입성공");
+
+    //메인 페이지로 이동시키고 세션 저장시키기
+    window.location.href = "/index.html"
+}
+
+
+
+  });
+});
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
