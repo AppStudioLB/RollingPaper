@@ -107,8 +107,8 @@ db
       dataArea.innerHTML += `
 							<article>
 								<div class="p-1 teal-blue box-shadow">
-									<p>${messages[i].message}</p>
-								</div>
+								 <p>내용은 2022/1/28 졸업식 날 볼 수 있습니다.</p>
+								 </div>
 								<div class="float-right">
 									<span class="green-sheen p-05 small">
 										${messages[i].nickname}

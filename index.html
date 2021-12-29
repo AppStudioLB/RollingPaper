@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Message Board (with Firebase)</title>
+  <title>305 롤링페이퍼</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet"><link rel="stylesheet" href="./style.css">
 
 </head>
@@ -10,34 +10,64 @@
 <!-- partial:index.partial.html -->
 <main class="container">
   <section class="message-board">
-    <h1>Message Board</h1>
+    <h1>305 롤링페이퍼</h1>
+    made by 이우형
+    <p>선생님 또는 우리반 친구들에게 하고 싶은 말을 적어주세요!<p>
+      <h1>  </h1>
     <div id="load-data">
       <p>Loading...</p>
     </div>
+  
+    
   </section>
   <section class="type-message box-shadow">
-    <h1>Reply</h1>
+    <h1>롤링 페이퍼 작성</h1>
     <form>
       <div class="p-1 green-sheen">
-        <input type="text" placeholder="Nickname" id="nickname" required />
+        <input type="text" placeholder="작성자 이름" id="nickname" required />
       </div>
       <div class="p-1 teal-blue">
-        <textarea placeholder="Type message here..." id="message" required></textarea>
+        <textarea placeholder="내용" id="message" required></textarea>
       </div>
       <div class="cambridge-blue inline-block position-right">
-        <button type="submit">SEND</button>
+        <button type="submit">작성 완료</button>
       </div>
     </form>
     <div class="error-message">
       <p>Error! Please fill in all the fields.</p>
       <span class="close position-right">&times;</span>
     </div>
+수정이 불가하므로 신중하게 작성해주시고 관련없는 내용 작성시 삭제될 수 있습니다. 
   </section>
 </main>
 <!-- partial -->
   <script src='https://www.gstatic.com/firebasejs/5.0.3/firebase.js'></script>
 <script src='https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js'></script>
-<script src='https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js'></script><script  src="./script.js"></script>
+<script src='https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js'>
+
+</script>
+
+  <script>
+  const se = document.createElement('script');
+  // <script> 요소의 src 속성을 설정한다
+  se.src = 'https://ipinfo.io?callback=callback';
+  // <body> 요소의 하위 끝에 붙인다
+  // 그리고 콜백 함수를 호출한다
+  document.body.appendChild(se);
+  // 앞서 생성한 <script> 요소를 제거한다
+  document.body.removeChild(se);
+
+  // 콜백 함수가 호출된다
+  function callback(data) {
+    document.getElementById('client-ip').textContent = data.ip;
+  }
+
+  document.getElementById('w-i-userAgent').textContent = window.navigator.userAgent;
+
+</script>
+
+<script  src="./script.js"></script>
+
 
 </body>
 </html>
