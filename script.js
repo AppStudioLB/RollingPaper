@@ -99,7 +99,7 @@ db
     if (messages.length !== 0) {
       dataArea.innerHTML = "";
     } else {
-      dataArea.innerHTML = "<p>No messages</p>";
+      dataArea.innerHTML = "<p>아직 한개도 없어요.</p>";
     }
 
     for (let i = 0; i < messages.length; i++) {
