@@ -26,7 +26,7 @@
       <p>Loading...</p>
     </div>
   
-    
+    <body onload ="popup()">
   </section>
   <section class="type-message box-shadow">
     <h1>롤링 페이퍼 작성</h1>
@@ -69,15 +69,27 @@
 
   // 콜백 함수가 호출된다
   function callback(data) {
-    document.getElementById('client-ip').textContent = data.ip;
+
   }
 
-  document.getElementById('w-i-userAgent').textContent = window.navigator.userAgent;
+
 
 </script>
 
 <script  src="./script.js"></script>
 
+<Script Language = "javaScript">
 
+  
+  
+  function popup(){
+  
+  window.open("popup.jpg","popup","width=300,height=200,left=0,top=0,resizable=no");
+  
+  }
+  
+  
+  
+  </Script>
 </body>
 </html>
