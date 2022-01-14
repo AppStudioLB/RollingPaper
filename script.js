@@ -15,6 +15,21 @@ const settings = {
 };
 db.settings(settings);
 
+
+var dday = new Date("January 28, 2022, 0:00:00").getTime();
+
+setInterval(function() {
+  var today = new Date().getTime();
+  var gap = dday - today;
+  var day = Math.ceil(gap / (1000 * 60 * 60 * 24));
+  var hour = Math.ceil((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
+  var sec = Math.ceil((gap % (1000 * 60)) / 1000);
+
+  document.getElementById("count").innerHTML = "졸업식까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
+}, 1000);
+
+
 const form = document.querySelector("form");
 const nickname = document.getElementById("nickname");
 const message = document.getElementById("message");
