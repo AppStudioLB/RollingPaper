@@ -29,7 +29,6 @@ setInterval(function() {
   document.getElementById("count").innerHTML = "졸업식까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
 }, 1000);
 
-
 const form = document.querySelector("form");
 const nickname = document.getElementById("nickname");
 const message = document.getElementById("message");
