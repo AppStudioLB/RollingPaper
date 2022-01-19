@@ -26,7 +26,7 @@ setInterval(function() {
   var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
   var sec = Math.ceil((gap % (1000 * 60)) / 1000);
 
-  document.getElementById("count").innerHTML = "오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
+  document.getElementById("count").innerHTML = "내용 오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
 }, 1000);
 
 const form = document.querySelector("form");
