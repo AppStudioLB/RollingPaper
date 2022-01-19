@@ -16,7 +16,7 @@ const settings = {
 db.settings(settings);
 
 
-var dday = new Date("January 28, 2022, 0:00:00").getTime();
+var dday = new Date("January 28, 2022, 10:00:00").getTime();
 
 setInterval(function() {
   var today = new Date().getTime();
@@ -26,7 +26,7 @@ setInterval(function() {
   var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
   var sec = Math.ceil((gap % (1000 * 60)) / 1000);
 
-  document.getElementById("count").innerHTML = "졸업식까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
+  document.getElementById("count").innerHTML = "롤링페이퍼 오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
 }, 1000);
 
 const form = document.querySelector("form");
@@ -101,6 +101,14 @@ formatDate = d => {
   );
 };
 
+if (new Date() >= new Date('01/28/2022 10:00:00')) {
+
+} else {
+
+  document.getElementById("videoplayer").style.display="none";
+
+}
+
 db
   .collection("messages")
   .orderBy("date")
@@ -116,6 +124,35 @@ db
       dataArea.innerHTML = "<p>아직 한개도 없어요.</p>";
     }
 
+
+    if (new Date() >= new Date('01/28/2022 10:00:00')) {        
+  
+    for (let i = 0; i < messages.length; i++) {
+      const createdOn = new Date(messages[i].date.seconds * 1000);
+      dataArea.innerHTML += `
+							<article>
+								<div class="p-1 teal-blue box-shadow">
+								 <p>${messages[i].message}</p>
+								 </div>
+								<div class="float-right">
+									<span class="green-sheen p-05 small">
+										${messages[i].nickname}
+									</span>
+									<span class="cambridge-blue p-05 small">
+										${formatDate(createdOn)}
+									</span>
+								</div>
+							</article>
+						`;
+    } 
+
+
+
+
+  } else {
+
+    
+    
     for (let i = 0; i < messages.length; i++) {
       const createdOn = new Date(messages[i].date.seconds * 1000);
       dataArea.innerHTML += `
@@ -133,5 +170,8 @@ db
 								</div>
 							</article>
 						`;
+
     }
+ 
+  }
   });
