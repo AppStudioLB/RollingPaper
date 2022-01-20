@@ -15,8 +15,7 @@ const settings = {
 };
 db.settings(settings);
 
-
-var dday = new Date("January 28, 2022, 10:00:00").getTime();
+if (new Date() >= new Date('01/28/2022 10:00:00')) {
 
 setInterval(function() {
   var today = new Date().getTime();
@@ -26,15 +25,38 @@ setInterval(function() {
   var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
   var sec = Math.ceil((gap % (1000 * 60)) / 1000);
 
-  document.getElementById("count").innerHTML = "내용 오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
+  document.getElementById("count").innerHTML = "내용 오픈까지 " + "0일 "  + "0시간 " + "0분 " + "0초 남았습니다.";
 }, 1000);
 
+} else {
+
+  document.getElementById("videoplayer").style.display="none";
+
+  var dday = new Date("January 28, 2022, 10:00:00").getTime();
+
+  setInterval(function() {
+    var today = new Date().getTime();
+    var gap = dday - today;
+    var day = Math.ceil(gap / (1000 * 60 * 60 * 24));
+    var hour = Math.ceil((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
+    var sec = Math.ceil((gap % (1000 * 60)) / 1000);
+  
+    document.getElementById("count").innerHTML = "내용 오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
+  }, 1000);
+  
+}
+
+
+
+  
 const form = document.querySelector("form");
 const nickname = document.getElementById("nickname");
 const message = document.getElementById("message");
 const errorMessage = document.querySelector(".error-message");
 const closebtn = document.querySelector(".error-message .close");
 const dataArea = document.getElementById("load-data");
+
 
 form.addEventListener("submit", e => {
   e.preventDefault();
@@ -100,14 +122,6 @@ formatDate = d => {
     day + " " + months[month] + " '" + year + " - " + hours + ":" + minutes
   );
 };
-
-if (new Date() >= new Date('01/28/2022 10:00:00')) {
-
-} else {
-
-  document.getElementById("videoplayer").style.display="none";
-
-}
 
 db
   .collection("messages")
