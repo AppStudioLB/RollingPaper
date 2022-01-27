@@ -32,7 +32,7 @@ setInterval(function() {
 
   document.getElementById("videoplayer").style.display="none";
 
-  var dday = new Date("January 28, 2022, 10:00:00").getTime();
+  var dday = new Date("01/28/2022 10:00:00").getTime();
 
   setInterval(function() {
     var today = new Date().getTime();
@@ -42,7 +42,7 @@ setInterval(function() {
     var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
     var sec = Math.ceil((gap % (1000 * 60)) / 1000);
   
-    document.getElementById("count").innerHTML = "내용 오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
+    document.getElementById("count").innerHTML = "내용 오픈까지 " +  "0일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
   }, 1000);
   
 }
