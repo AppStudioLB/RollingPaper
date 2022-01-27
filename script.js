@@ -37,12 +37,12 @@ setInterval(function() {
   setInterval(function() {
     var today = new Date().getTime();
     var gap = dday - today;
-    var day = Math.ceil(gap / (1000 * 60 * 60 * 24));
-    var hour = Math.ceil((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
-    var sec = Math.ceil((gap % (1000 * 60)) / 1000);
+    var day = Math.ceil(gap / (1000 * 60 * 60 * 24)) -1;
+    var hour = Math.ceil((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)-1);
+    var min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60)-1);
+    var sec = Math.ceil((gap % (1000 * 60)) / 1000)-1;
   
-    document.getElementById("count").innerHTML = "내용 오픈까지 " +  "0일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
+    document.getElementById("count").innerHTML = "내용 오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초 남았습니다.";
   }, 1000);
   
 }
